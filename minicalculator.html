@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is mini Calcultor</h1>
+    <h1 id="display"></h1>
+    <input type="number",id=1stnum; placeholder="input first number">
+    <input type="number", id="2ndnum"; placeholder="input second number">
+    <hr>
+    <button onclick="add()"> Add</button>
+    <button onclick="sub()">Subtraction</button>
+    <button onclick="div()">Division</button>
+    <button onclick="mult()">Multiplication</button>
+
+</body>
+<script>
+    let n1=document.getElementById('1stname');
+    let n2=document.getElementById('2ndnum');
+
+    let display=document.getElementById('display');
+
+function add(){
+    sum=+n1.value + +n2.value;
+    display.textContent=sum;
+ 
+
+}
+
+</script>
+</html>
