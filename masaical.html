@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+<style>
+    #main{
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        width: 23%;
+        height:410px;
+        margin: auto;
+    text-align: center;
+        justify-content: center;
+      padding-top: 20px;
+    }
+
+  
+   #digit1{
+  padding-left: 20px;
+    display: grid;
+    grid-template-columns: repeat(4 , 60px);
+    grid-template-rows: repeat(4 , 60px) ;
+    gap:10px 10px
+   }
+   #digit1>div{
+
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    text-align: center;
+border-radius: 10px;
+margin: auto;
+justify-content: center;
+width: 100%;
+height:100%;
+
+}
+#digit1>div:nth-child(4n+0){
+    background: black;
+    color: white;
+}
+#digit1>div:nth-child(15){
+    background: black;
+    color: white;
+}
+#digit1>div:nth-child(13){
+    background:red;
+    color: white;
+}
+#display{
+    margin-left:15px ;
+    margin-top: 20px;
+    width: 90%;
+    height: 15%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+justify-content: center;
+margin-bottom: 15px;
+border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+    <h1 style="text-align: center; color: aquamarine;">Massai Calculator</h1>
+    
+      
+<div id="main">
+
+    <div >
+        <!-- <h1 id="display">hi </h1> -->
+        <input type="text", id="display" disabled>
+    </div>
+    
+    <div id="digit1" >
+        <button class="digit">1</button>
+        <button class="digit">2</button>
+        <button class="digit">3</button>
+        <button class="opt">+</button>
+        <button class="digit">4</button>
+        <button class="digit">5</button>
+        <button class="digit">6</button>
+        <button class="opt">-</button>
+        <button class="digit">7</button>
+        <button class="digit">8</button>
+        <button class="digit">9</button>
+        <button class="opt">*</button>
+        <button id="clear">c</button>
+        <button class="digit">0</button>
+        <button id="equal">=</button>
+        <button class="opt">/</button>
+        </div>
+    
+</div>
+
+</body>
+</html>
+<script>
+
+    // first number operator  second number
+    let keypad = document.querySelectorAll('#digit1 > .digit');
+    let operators = document.querySelectorAll('#digit1 > .opt');
+    let head = document.getElementById("display");
+    let IsFirstNumber = true;
+    let opt1= "";
+
+
+    let firstNumber = "";
+    let secondNumber = "";
+
+    let equal = document.getElementById("equal");
+    let clear = document.getElementById("clear")
+    
+
+    equal.addEventListener('click',function()
+    {
+        head.innerText = calculate(firstNumber,secondNumber,opt1);
+    })
+
+    for(let i = 0; i < keypad.length; i++)
+    {
+        keypad[i].addEventListener('click',function()
+        {
+            if(IsFirstNumber == true)
+            {
+                firstNumber += keypad[i].innerText // concatenation
+           head.innerText = firstNumber;
+            }
+            else{
+                
+                secondNumber += keypad[i].innerText // concatenation
+                head.innerText = secondNumber;
+            }
+         
+        })
+    }
+//
+
+//
+    for(let i = 0; i < operators.length; i++)
+    {
+        operators[i].addEventListener('click',function()
+        {
+            IsFirstNumber = false;
+            opt1 = operators[i].innerText;
+           
+        })
+    }
+
+function calculate(firstNumber,secondNumber,opt1)
+{
+    // opt --> +,- /,*
+    switch(opt1)
+    {
+        case "+" : 
+         return Number(firstNumber) + Number(secondNumber) ;
+         case "-" : 
+         return Number(firstNumber) - Number(secondNumber) ;
+         case "*" : 
+         return Number(firstNumber) * Number(secondNumber) ;
+         case "/" : 
+         return Number(firstNumber) / Number(secondNumber) ;
+        
+    }
+}
+     clear.addEventListener('click',function()
+       {
+        firstNumber="";
+        secondNumber="";
+        head.innerText ="hi";
+        
+
+        })
+
+
+
+</script>
